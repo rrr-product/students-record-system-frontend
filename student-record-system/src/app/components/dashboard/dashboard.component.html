@@ -1,0 +1,24 @@
+<div class="grid">
+  <div class="col-12">
+    <h1 class="text-3xl mb-4 text-color">Dashboard</h1>
+  </div>
+  <div class="col-12 lg:col-8">
+    <p-card header="Class Attendance Strengths">
+      <p-chart type="bar" [data]="chartData" [options]="chartOptions"></p-chart>
+    </p-card>
+  </div>
+  <div class="col-12 lg:col-4">
+    <p-card header="Quick Stats">
+      <div class="flex flex-col gap-3">
+        <div class="stat-box p-3 border-round">
+          <span class="block stat-title font-medium mb-1">Total Classes</span>
+          <div class="stat-value font-medium text-xl">{{totalClasses}}</div>
+        </div>
+        <div class="stat-box p-3 border-round">
+          <span class="block stat-title font-medium mb-1">Total Students</span>
+          <div class="stat-value font-medium text-xl">{{totalStudents}}</div>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div>

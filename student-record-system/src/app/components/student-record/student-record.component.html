@@ -1,0 +1,99 @@
+<div class="grid">
+  <div class="col-12">
+    <p-card header="Student Records">
+      <div class="flex justify-content-between align-items-center mb-3">
+        <span class="p-input-icon-left w-full sm:w-auto">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
+        </span>
+        <p-button label="Add Student" icon="pi pi-plus" (onClick)="showDialog()"></p-button>
+      </div>
+      
+      <p-table #dt [value]="students" [globalFilterFields]="['name', 'email', 'registerNo', 'department']" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+            <th pSortableColumn="registerNo">Reg No <p-sortIcon field="registerNo"></p-sortIcon></th>
+            <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+            <th pSortableColumn="department">Dept <p-sortIcon field="department"></p-sortIcon></th>
+            <th>Class (Section)</th>
+            <th>Actions</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-student>
+          <tr>
+            <td>{{student.name}}</td>
+            <td>{{student.registerNo}}</td>
+            <td>{{student.email}}</td>
+            <td>{{student.department}}</td>
+            <td>{{getClassName(student.classId)}}</td>
+            <td>
+              <p-button icon="pi pi-eye" [rounded]="true" [text]="true" severity="success" (onClick)="viewStudent(student)"></p-button>
+              <p-button icon="pi pi-pencil" [rounded]="true" [text]="true" severity="info" (onClick)="editStudent(student)"></p-button>
+              <p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger" (onClick)="deleteStudent(student.id)"></p-button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="6" class="text-center p-4">No students found.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+</div>
+
+<!-- Create/Edit Dialog -->
+<p-dialog [(visible)]="displayDialog" [header]="isEditing ? 'Edit Student' : 'Add Student'" [modal]="true" [style]="{ width: '40vw' }" [breakpoints]="{'960px': '75vw', '640px': '90vw'}">
+  <div class="flex flex-col gap-3 mt-3">
+    <div class="grid formgrid">
+      <div class="col-12 field">
+        <label class="block text-900 font-medium mb-2">Name</label>
+        <input type="text" pInputText [(ngModel)]="currentStudent.name" class="w-full" />
+      </div>
+      <div class="col-12 md:col-6 field">
+        <label class="block text-900 font-medium mb-2">Register No</label>
+        <input type="text" pInputText [(ngModel)]="currentStudent.registerNo" class="w-full" />
+      </div>
+      <div class="col-12 md:col-6 field">
+        <label class="block text-900 font-medium mb-2">Email</label>
+        <input type="email" pInputText [(ngModel)]="currentStudent.email" class="w-full" />
+      </div>
+      <div class="col-12 md:col-6 field">
+        <label class="block text-900 font-medium mb-2">Department</label>
+        <input type="text" pInputText [(ngModel)]="currentStudent.department" class="w-full" />
+      </div>
+      <div class="col-12 md:col-6 field">
+        <label class="block text-900 font-medium mb-2">Class (Section)</label>
+        <p-select [options]="classes" [(ngModel)]="currentStudent.classId" optionLabel="section" optionValue="id" placeholder="Select Class" styleClass="w-full"></p-select>
+      </div>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button label="Cancel" icon="pi pi-times" (onClick)="hideDialog()" severity="secondary" [text]="true"></p-button>
+    <p-button label="Save" icon="pi pi-check" (onClick)="saveStudent()" [disabled]="!isFormValid()"></p-button>
+  </ng-template>
+</p-dialog>
+
+<!-- View Dialog -->
+<p-dialog [(visible)]="displayViewDialog" header="Student Details" [modal]="true" [style]="{ width: '40vw' }">
+  <div class="flex flex-col gap-3 mt-3" *ngIf="currentStudent">
+    <div class="grid">
+      <div class="col-6"><span class="font-medium text-500">Name:</span></div>
+      <div class="col-6"><span class="text-900">{{currentStudent.name}}</span></div>
+      
+      <div class="col-6"><span class="font-medium text-500">Register No:</span></div>
+      <div class="col-6"><span class="text-900">{{currentStudent.registerNo}}</span></div>
+      
+      <div class="col-6"><span class="font-medium text-500">Email:</span></div>
+      <div class="col-6"><span class="text-900">{{currentStudent.email}}</span></div>
+      
+      <div class="col-6"><span class="font-medium text-500">Department:</span></div>
+      <div class="col-6"><span class="text-900">{{currentStudent.department}}</span></div>
+      
+      <div class="col-6"><span class="font-medium text-500">Class:</span></div>
+      <div class="col-6"><span class="text-900">{{getClassName(currentStudent.classId!)}}</span></div>
+    </div>
+  </div>
+</p-dialog>
