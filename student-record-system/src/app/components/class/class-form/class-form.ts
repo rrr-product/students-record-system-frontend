@@ -15,8 +15,13 @@ import { DatePickerModule } from 'primeng/datepicker';
   selector: 'app-class-form',
   standalone: true,
   imports: [
-    CommonModule, FormsModule, CardModule, ButtonModule, 
-    InputTextModule, SelectModule, DatePickerModule
+    CommonModule,
+    FormsModule,
+    CardModule,
+    ButtonModule,
+    InputTextModule,
+    SelectModule,
+    DatePickerModule
   ],
   templateUrl: './class-form.html',
   styleUrl: './class-form.scss',
@@ -25,15 +30,15 @@ export class ClassForm implements OnInit {
   isEditing = false;
   currentClass: Partial<ClassRecord> = {};
   mentors: LookupItem[] = [];
-  
+
   startedAtTime: Date | null = null;
   endsAtTime: Date | null = null;
 
   constructor(
-    private dataService: DataService, 
+    private dataService: DataService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.dataService.mentors$.subscribe(m => this.mentors = m);

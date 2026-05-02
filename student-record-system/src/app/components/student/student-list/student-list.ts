@@ -13,7 +13,11 @@ import { InputTextModule } from 'primeng/inputtext';
   selector: 'app-student-list',
   standalone: true,
   imports: [
-    CommonModule, TableModule, ButtonModule, CardModule, InputTextModule
+    CommonModule,
+    TableModule,
+    ButtonModule,
+    CardModule,
+    InputTextModule
   ],
   templateUrl: './student-list.html',
   styleUrl: './student-list.scss',
@@ -22,7 +26,10 @@ export class StudentList implements OnInit {
   students: StudentRecord[] = [];
   classes: ClassRecord[] = [];
 
-  constructor(private dataService: DataService, private router: Router) {}
+  constructor(
+    private dataService: DataService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.dataService.students$.subscribe(s => this.students = s);

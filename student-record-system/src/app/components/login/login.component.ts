@@ -30,7 +30,10 @@ export class LoginComponent {
   password = '';
   error = '';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   login() {
     this.error = '';

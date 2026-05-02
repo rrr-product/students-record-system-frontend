@@ -8,18 +8,24 @@ import { CardModule } from 'primeng/card';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, ChartModule, CardModule],
+  imports: [
+    CommonModule,
+    ChartModule,
+    CardModule
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit {
+
   chartData: any;
   chartOptions: any;
-
   totalClasses = 0;
   totalStudents = 0;
 
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService
+  ) { }
 
   ngOnInit() {
     this.dataService.classes$.subscribe(classes => {

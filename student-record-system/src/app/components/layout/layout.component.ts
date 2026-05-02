@@ -14,7 +14,16 @@ import { MenuItem } from 'primeng/api';
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule, RouterModule, ButtonModule, ButtonGroupModule, BadgeModule, RippleModule, ToolbarModule, MenuModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ButtonModule,
+    ButtonGroupModule,
+    BadgeModule,
+    RippleModule,
+    ToolbarModule,
+    MenuModule
+  ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
@@ -22,7 +31,10 @@ export class LayoutComponent implements OnInit {
   isDarkMode = false;
   menuItems: MenuItem[] = [];
 
-  constructor(private authService: AuthService, public router: Router) {}
+  constructor(
+    private authService: AuthService,
+    public router: Router
+  ) { }
 
   ngOnInit() {
     this.checkTheme();

@@ -12,7 +12,10 @@ import { CardModule } from 'primeng/card';
   selector: 'app-class-list',
   standalone: true,
   imports: [
-    CommonModule, TableModule, ButtonModule, CardModule
+    CommonModule,
+    TableModule,
+    ButtonModule,
+    CardModule
   ],
   templateUrl: './class-list.html',
   styleUrl: './class-list.scss',
@@ -20,7 +23,10 @@ import { CardModule } from 'primeng/card';
 export class ClassList implements OnInit {
   classes: ClassRecord[] = [];
 
-  constructor(private dataService: DataService, private router: Router) {}
+  constructor(
+    private dataService: DataService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.dataService.classes$.subscribe(c => this.classes = c);

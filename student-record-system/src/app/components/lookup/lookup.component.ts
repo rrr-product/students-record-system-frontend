@@ -12,7 +12,14 @@ import { CardModule } from 'primeng/card';
 @Component({
   selector: 'app-lookup',
   standalone: true,
-  imports: [CommonModule, FormsModule, TableModule, ButtonModule, InputTextModule, CardModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    TableModule,
+    ButtonModule,
+    InputTextModule,
+    CardModule
+  ],
   templateUrl: './lookup.component.html',
   styleUrl: './lookup.component.scss'
 })
@@ -20,7 +27,9 @@ export class LookupComponent implements OnInit {
   mentors: LookupItem[] = [];
   newMentorName = '';
 
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService
+  ) { }
 
   ngOnInit() {
     this.dataService.mentors$.subscribe(m => this.mentors = m);

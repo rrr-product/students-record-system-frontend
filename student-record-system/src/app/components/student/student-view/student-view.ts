@@ -11,7 +11,9 @@ import { ButtonModule } from 'primeng/button';
   selector: 'app-student-view',
   standalone: true,
   imports: [
-    CommonModule, CardModule, ButtonModule
+    CommonModule,
+    CardModule,
+    ButtonModule
   ],
   templateUrl: './student-view.html',
   styleUrl: './student-view.scss',
@@ -21,10 +23,10 @@ export class StudentView implements OnInit {
   classes: ClassRecord[] = [];
 
   constructor(
-    private dataService: DataService, 
+    private dataService: DataService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.dataService.classes$.subscribe(c => this.classes = c);

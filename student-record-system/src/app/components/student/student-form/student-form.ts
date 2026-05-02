@@ -14,8 +14,12 @@ import { SelectModule } from 'primeng/select';
   selector: 'app-student-form',
   standalone: true,
   imports: [
-    CommonModule, FormsModule, CardModule, ButtonModule, 
-    InputTextModule, SelectModule
+    CommonModule,
+    FormsModule,
+    CardModule,
+    ButtonModule,
+    InputTextModule,
+    SelectModule
   ],
   templateUrl: './student-form.html',
   styleUrl: './student-form.scss',
@@ -26,10 +30,10 @@ export class StudentForm implements OnInit {
   classes: ClassRecord[] = [];
 
   constructor(
-    private dataService: DataService, 
+    private dataService: DataService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.dataService.classes$.subscribe(c => this.classes = c);
