@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-12" *ngIf="currentStudent; else noStudent">
+    <p-card>
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+        <h2 class="fs-4 fw-bold m-0 text-dark"><a class="text-decoration-none" routerLink="/students">Students</a> ::
+          View</h2>
+        <div class="d-flex align-items-center gap-2">
+          <p-button label="Edit" icon="pi pi-pencil" size="small" severity="info" (onClick)="editStudent()"></p-button>
+          <p-button label="Back" icon="pi pi-arrow-left" size="small" severity="secondary"
+            (onClick)="goBack()"></p-button>
+        </div>
+      </div>
+      <div class="d-flex flex-column gap-3 mt-3">
+        <div class="row">
+          <div class="col-6"><span class="fw-medium text-secondary">Name:</span></div>
+          <div class="col-6"><span class="text-dark">{{currentStudent.name}}</span></div>
+
+          <div class="col-6"><span class="fw-medium text-secondary">Register No:</span></div>
+          <div class="col-6"><span class="text-dark">{{currentStudent.registerNo}}</span></div>
+
+          <div class="col-6"><span class="fw-medium text-secondary">Email:</span></div>
+          <div class="col-6"><span class="text-dark">{{currentStudent.email}}</span></div>
+
+          <div class="col-6"><span class="fw-medium text-secondary">Department:</span></div>
+          <div class="col-6"><span class="text-dark">{{currentStudent.department}}</span></div>
+
+          <div class="col-6"><span class="fw-medium text-secondary">Class:</span></div>
+          <div class="col-6"><span class="text-dark">{{getClassName(currentStudent.classId!)}}</span></div>
+        </div>
+      </div>
+    </p-card>
+  </div>
+  <ng-template #noStudent>
+    <div class="col-12 text-center p-5">
+      <h2>Student not found</h2>
+      <p-button label="Back to Students" icon="pi pi-arrow-left" (onClick)="goBack()"></p-button>
+    </div>
+  </ng-template>
+</div>

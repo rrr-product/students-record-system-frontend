@@ -74,6 +74,10 @@ export class DataService {
     this.classesSubject.next(updated);
   }
 
+  getClassById(id: string): ClassRecord | undefined {
+    return this.getClasses().find(c => c.id === id);
+  }
+
   // --- Students ---
   getStudents(): StudentRecord[] {
     return this.studentsSubject.value;
@@ -98,5 +102,9 @@ export class DataService {
     const updated = this.getStudents().filter(s => s.id !== id);
     this.saveData(this.studentsKey, updated);
     this.studentsSubject.next(updated);
+  }
+
+  getStudentById(id: string): StudentRecord | undefined {
+    return this.getStudents().find(s => s.id === id);
   }
 }

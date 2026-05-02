@@ -1,22 +1,22 @@
-<div class="grid">
+<div class="row">
   <div class="col-12">
-    <h1 class="text-3xl mb-4 text-color">Dashboard</h1>
+    <h1 class="fs-3 mb-4 text-dark">Dashboard</h1>
   </div>
-  <div class="col-12 lg:col-8">
+  <div class="col-12 col-lg-8">
     <p-card header="Class Attendance Strengths">
       <p-chart type="bar" [data]="chartData" [options]="chartOptions"></p-chart>
     </p-card>
   </div>
-  <div class="col-12 lg:col-4">
+  <div class="col-12 col-lg-4">
     <p-card header="Quick Stats">
-      <div class="flex flex-col gap-3">
-        <div class="stat-box p-3 border-round">
-          <span class="block stat-title font-medium mb-1">Total Classes</span>
-          <div class="stat-value font-medium text-xl">{{totalClasses}}</div>
+      <div class="d-flex flex-column gap-3">
+        <div class="stat-box p-3 rounded">
+          <span class="d-block stat-title fw-medium mb-1">Total Classes</span>
+          <div class="stat-value fw-medium fs-5">{{totalClasses}}</div>
         </div>
-        <div class="stat-box p-3 border-round">
-          <span class="block stat-title font-medium mb-1">Total Students</span>
-          <div class="stat-value font-medium text-xl">{{totalStudents}}</div>
+        <div class="stat-box p-3 rounded">
+          <span class="d-block stat-title fw-medium mb-1">Total Students</span>
+          <div class="stat-value fw-medium fs-5">{{totalStudents}}</div>
         </div>
       </div>
     </p-card>

@@ -1,33 +1,49 @@
-<div class="layout-wrapper">
-  <div class="card">
-    <p-menubar [model]="menuItems">
-      <ng-template #start>
-        <div class="logo mr-4 cursor-pointer" (click)="router.navigate(['/dashboard'])">
-          <i class="pi pi-graduation-cap text-primary" style="font-size: 1.8rem"></i>
-          <h2 class="ml-2 m-0 text-primary font-bold">SRS</h2>
+<div class="min-vh-100 d-flex flex-column bg-transparent">
+  <!-- Custom Header -->
+  <div class="p-3">
+    <p-toolbar [style]="{ 'border-radius': '3rem', padding: '1rem 1rem 1rem 1.5rem' }">
+      <ng-template pTemplate="start">
+        <div class="d-flex align-items-center gap-4">
+          <!-- Logo -->
+          <div class="d-flex align-items-center me-3" style="cursor: pointer;" (click)="router.navigate(['/dashboard'])">
+            <i class="pi pi-graduation-cap text-primary" style="font-size: 1.8rem"></i>
+            <h2 class="ms-2 m-0 text-primary fw-bold d-none d-sm-block">SRS</h2>
+          </div>
+
+          <!-- Navigation Menu -->
+          <div class="d-none d-md-flex align-items-center ms-3">
+            <p-buttongroup class="capsule-group">
+              @for (item of menuItems; track $index) {
+                <p-button [icon]="item.icon" [label]="item.label" (onClick)="router.navigate([item.routerLink])"
+                  [severity]="isActive(item.routerLink) ? 'primary' : 'secondary'" [outlined]="!isActive(item.routerLink)" size="small">
+                </p-button>
+              }
+            </p-buttongroup>
+          </div>
         </div>
       </ng-template>
-      
-      <ng-template #item let-item let-root="root">
-        <a pRipple [routerLink]="item.routerLink" class="flex items-center p-menubar-item-link px-4 py-3 cursor-pointer gap-2">
-          <i [ngClass]="item.icon"></i>
-          <span>{{ item.label }}</span>
-          <p-badge *ngIf="item.badge" [ngClass]="{ 'ml-auto': !root }" [value]="item.badge" />
-          <span *ngIf="item.shortcut" class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
-          <i *ngIf="item.items" [ngClass]="['ml-auto pi', root ? 'pi-angle-down' : 'pi-angle-right']"></i>
-        </a>
-      </ng-template>
-      
-      <ng-template #end>
-        <div class="flex items-center gap-3">
-          <p-button [icon]="isDarkMode ? 'pi pi-sun' : 'pi pi-moon'" (onClick)="toggleTheme()" [rounded]="true" [text]="true" severity="secondary"></p-button>
-          <p-button icon="pi pi-sign-out" (onClick)="logout()" [rounded]="true" [text]="true" severity="danger" label="Logout"></p-button>
+
+      <ng-template pTemplate="end">
+        <!-- Right Actions -->
+        <div class="d-flex align-items-center gap-2">
+          <!-- Mobile Menu (Hamburger) -->
+          <div class="d-md-none">
+            <p-menu #menu [model]="menuItems" [popup]="true"></p-menu>
+            <p-button icon="pi pi-bars" (onClick)="menu.toggle($event)" [rounded]="true" [text]="true" severity="secondary"></p-button>
+          </div>
+
+          <p-button [icon]="isDarkMode ? 'pi pi-sun' : 'pi pi-moon'" (onClick)="toggleTheme()" [rounded]="true"
+            [text]="true" severity="secondary"></p-button>
+          <p-button icon="pi pi-sign-out" (onClick)="logout()" [rounded]="true" [raised]="true" severity="danger"
+            label="Logout" class="d-none d-md-block" size="small"></p-button>
+          <p-button icon="pi pi-sign-out" (onClick)="logout()" [rounded]="true" [raised]="true" severity="danger"
+            class="d-md-none" size="small"></p-button>
         </div>
       </ng-template>
-    </p-menubar>
+    </p-toolbar>
   </div>
 
-  <div class="layout-main-content p-4">
+  <div class="flex-grow-1 p-4">
     <router-outlet></router-outlet>
   </div>
 </div>

@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-12">
+    <p-card>
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+        <h2 class="fs-4 fw-bold m-0 text-dark">Class Details</h2>
+        <div class="d-flex align-items-center gap-3">
+          <p-button label="Create" icon="pi pi-plus" size="small" (onClick)="createClass()"></p-button>
+        </div>
+      </div>
+
+      <p-table [value]="classes" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Section</th>
+            <th>Room No</th>
+            <th>Coordinator</th>
+            <th>Mentors</th>
+            <th>Timings</th>
+            <th>Actions</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-cls>
+          <tr>
+            <td>{{cls.section}}</td>
+            <td>{{cls.roomNo}}</td>
+            <td>{{cls.coordinator}}</td>
+            <td>
+              <div class="small">1. {{cls.mentorOne?.name || 'N/A'}}</div>
+              <div class="small">2. {{cls.mentorTwo?.name || 'N/A'}}</div>
+              <div class="small">3. {{cls.mentorThree?.name || 'N/A'}}</div>
+            </td>
+            <td>
+              {{formatTime(cls.classStartedAt)}} - {{formatTime(cls.classEndsAt)}}
+            </td>
+            <td>
+              <p-button icon="pi pi-eye" [rounded]="true" [text]="true" severity="success"
+                (onClick)="viewClass(cls.id)"></p-button>
+              <p-button icon="pi pi-pencil" [rounded]="true" [text]="true" severity="info"
+                (onClick)="editClass(cls.id)"></p-button>
+              <p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger"
+                (onClick)="deleteClass(cls.id)"></p-button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="6" class="text-center p-4">No classes found.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+</div>

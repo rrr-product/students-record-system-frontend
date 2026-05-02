@@ -20,12 +20,36 @@ export const routes: Routes = [
         loadComponent: () => import('./components/lookup/lookup.component').then(m => m.LookupComponent) 
       },
       { 
-        path: 'class-detail', 
-        loadComponent: () => import('./components/class-detail/class-detail.component').then(m => m.ClassDetailComponent) 
+        path: 'classes', 
+        loadComponent: () => import('./components/class/class-list/class-list').then(m => m.ClassList) 
       },
       { 
-        path: 'student-record', 
-        loadComponent: () => import('./components/student-record/student-record.component').then(m => m.StudentRecordComponent) 
+        path: 'classes/create', 
+        loadComponent: () => import('./components/class/class-form/class-form').then(m => m.ClassForm) 
+      },
+      { 
+        path: 'classes/edit/:id', 
+        loadComponent: () => import('./components/class/class-form/class-form').then(m => m.ClassForm) 
+      },
+      { 
+        path: 'classes/view/:id', 
+        loadComponent: () => import('./components/class/class-view/class-view').then(m => m.ClassView) 
+      },
+      { 
+        path: 'students', 
+        loadComponent: () => import('./components/student/student-list/student-list').then(m => m.StudentList) 
+      },
+      { 
+        path: 'students/create', 
+        loadComponent: () => import('./components/student/student-form/student-form').then(m => m.StudentForm) 
+      },
+      { 
+        path: 'students/edit/:id', 
+        loadComponent: () => import('./components/student/student-form/student-form').then(m => m.StudentForm) 
+      },
+      { 
+        path: 'students/view/:id', 
+        loadComponent: () => import('./components/student/student-view/student-view').then(m => m.StudentView) 
       }
     ]
   },

@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-12">
+    <p-card>
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+        <h2 class="fs-4 fw-bold m-0 text-dark">Student Records</h2>
+        <div class="d-flex align-items-center gap-3">
+          <p-button label="Create" icon="pi pi-plus" size="small" (onClick)="createStudent()"></p-button>
+        </div>
+      </div>
+
+      <p-table #dt [value]="students" [globalFilterFields]="['name', 'email', 'registerNo', 'department']"
+        [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+            <th pSortableColumn="registerNo">Reg No <p-sortIcon field="registerNo"></p-sortIcon></th>
+            <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+            <th pSortableColumn="department">Dept <p-sortIcon field="department"></p-sortIcon></th>
+            <th>Class (Section)</th>
+            <th>Actions</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-student>
+          <tr>
+            <td>{{student.name}}</td>
+            <td>{{student.registerNo}}</td>
+            <td>{{student.email}}</td>
+            <td>{{student.department}}</td>
+            <td>{{getClassName(student.classId)}}</td>
+            <td>
+              <p-button icon="pi pi-eye" [rounded]="true" [text]="true" severity="success"
+                (onClick)="viewStudent(student.id)"></p-button>
+              <p-button icon="pi pi-pencil" [rounded]="true" [text]="true" severity="info"
+                (onClick)="editStudent(student.id)"></p-button>
+              <p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger"
+                (onClick)="deleteStudent(student.id)"></p-button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="6" class="text-center p-4">No students found.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+</div>

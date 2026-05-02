@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-12">
+    <p-card [header]="isEditing ? 'Edit Class' : 'Add Class'">
+      <div class="d-flex flex-column gap-3 mt-3">
+        <div class="row">
+          <div class="col-12 col-md-6 mb-3">
+            <label class="d-block text-dark fw-medium mb-2">Section</label>
+            <input type="text" pInputText [(ngModel)]="currentClass.section" class="w-100" />
+          </div>
+          <div class="col-12 col-md-6 mb-3">
+            <label class="d-block text-dark fw-medium mb-2">Room No</label>
+            <input type="text" pInputText [(ngModel)]="currentClass.roomNo" class="w-100" />
+          </div>
+          <div class="col-12 mb-3">
+            <label class="d-block text-dark fw-medium mb-2">Class Coordinator</label>
+            <input type="text" pInputText [(ngModel)]="currentClass.coordinator" class="w-100" />
+          </div>
+          <div class="col-12 col-md-4 mb-3">
+            <label class="d-block text-dark fw-medium mb-2">Mentor One</label>
+            <p-select [options]="mentors" [(ngModel)]="currentClass.mentorOne" optionLabel="name" placeholder="Select a Mentor" styleClass="w-100"></p-select>
+          </div>
+          <div class="col-12 col-md-4 mb-3">
+            <label class="d-block text-dark fw-medium mb-2">Mentor Two</label>
+            <p-select [options]="mentors" [(ngModel)]="currentClass.mentorTwo" optionLabel="name" placeholder="Select a Mentor" styleClass="w-100"></p-select>
+          </div>
+          <div class="col-12 col-md-4 mb-3">
+            <label class="d-block text-dark fw-medium mb-2">Mentor Three</label>
+            <p-select [options]="mentors" [(ngModel)]="currentClass.mentorThree" optionLabel="name" placeholder="Select a Mentor" styleClass="w-100"></p-select>
+          </div>
+          <div class="col-12 col-md-6 mb-3">
+            <label class="d-block text-dark fw-medium mb-2">Class Started At</label>
+            <p-datepicker [(ngModel)]="startedAtTime" [timeOnly]="true" hourFormat="12" styleClass="w-100"></p-datepicker>
+          </div>
+          <div class="col-12 col-md-6 mb-3">
+            <label class="d-block text-dark fw-medium mb-2">Class Ends At</label>
+            <p-datepicker [(ngModel)]="endsAtTime" [timeOnly]="true" hourFormat="12" styleClass="w-100"></p-datepicker>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end gap-2 mt-4">
+        <p-button label="Cancel" icon="pi pi-times" (onClick)="cancel()" severity="secondary" [text]="true"></p-button>
+        <p-button label="Save" icon="pi pi-check" (onClick)="saveClass()" [disabled]="!isFormValid()"></p-button>
+      </div>
+    </p-card>
+  </div>
+</div>
