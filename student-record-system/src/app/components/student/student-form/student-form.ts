@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DataService } from '../../../../services/data.service';
-import { StudentRecord, ClassRecord } from '../../../../models/app.models';
+import { DataService } from '../../../services/data.service';
+import { StudentRecord, ClassRecord } from '../../../models/app.models';
 
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
