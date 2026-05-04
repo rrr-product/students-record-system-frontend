@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { DataService } from '../../../services/data.service';
 import { StudentRecord, ClassRecord } from '../../../models/app.models';
 
@@ -15,6 +15,7 @@ import { SelectModule } from 'primeng/select';
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule,
     CardModule,
     ButtonModule,

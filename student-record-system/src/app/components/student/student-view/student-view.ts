@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { DataService } from '../../../services/data.service';
 import { StudentRecord, ClassRecord } from '../../../models/app.models';
 
@@ -12,6 +12,7 @@ import { ButtonModule } from 'primeng/button';
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     CardModule,
     ButtonModule
   ],

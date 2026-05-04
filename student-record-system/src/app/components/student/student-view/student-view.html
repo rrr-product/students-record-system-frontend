@@ -2,8 +2,10 @@
   <div class="col-12" *ngIf="currentStudent; else noStudent">
     <p-card>
       <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
-        <h2 class="fs-4 fw-bold m-0 text-dark"><a class="text-decoration-none" routerLink="/students">Students</a> ::
-          View</h2>
+        <h2 class="fs-4 fw-bold m-0 text-dark">
+          <a class="text-decoration-none text-primary" routerLink="/students">Students</a>
+          <span class="text-secondary fw-normal fs-5"> :: View</span>
+        </h2>
         <div class="d-flex align-items-center gap-2">
           <p-button label="Edit" icon="pi pi-pencil" size="small" severity="info" (onClick)="editStudent()"></p-button>
           <p-button label="Back" icon="pi pi-arrow-left" size="small" severity="secondary"

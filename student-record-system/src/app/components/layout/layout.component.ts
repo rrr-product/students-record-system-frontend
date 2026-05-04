@@ -42,7 +42,7 @@ export class LayoutComponent implements OnInit {
       { label: 'Dashboard', icon: 'pi pi-home', routerLink: '/dashboard' },
       { label: 'Classes', icon: 'pi pi-book', routerLink: '/classes' },
       { label: 'Students', icon: 'pi pi-users', routerLink: '/students' },
-      { label: 'Lookup Options', icon: 'pi pi-cog', routerLink: '/lookup' }
+      { label: 'Lookup Options', icon: 'pi pi-search', routerLink: '/lookup' }
     ];
   }
 
