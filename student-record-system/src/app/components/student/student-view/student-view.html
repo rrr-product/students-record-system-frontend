@@ -1,8 +1,9 @@
 <div class="row">
-  <div class="col-12" *ngIf="currentStudent; else noStudent">
+  @if (currentStudent) {
+  <div class="col-12">
     <p-card>
       <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
-        <h2 class="fs-4 fw-bold m-0 text-dark">
+        <h2 class="fs-4 fw-bold m-0 text-color">
           <a class="text-decoration-none text-primary" routerLink="/students">Students</a>
           <span class="text-secondary fw-normal fs-5"> :: View</span>
         </h2>
@@ -12,30 +13,51 @@
             (onClick)="goBack()"></p-button>
         </div>
       </div>
-      <div class="d-flex flex-column gap-3 mt-3">
-        <div class="row">
-          <div class="col-6"><span class="fw-medium text-secondary">Name:</span></div>
-          <div class="col-6"><span class="text-dark">{{currentStudent.name}}</span></div>
+      <div class="row mt-3">
+        <div class="col-12 col-md-8">
+          <div class="d-flex flex-column gap-3">
+            <div class="row">
+              <div class="col-6"><span class="fw-medium text-secondary">Name:</span></div>
+              <div class="col-6"><span class="text-color">{{currentStudent.name}}</span></div>
 
-          <div class="col-6"><span class="fw-medium text-secondary">Register No:</span></div>
-          <div class="col-6"><span class="text-dark">{{currentStudent.registerNo}}</span></div>
+              <div class="col-6 mt-2"><span class="fw-medium text-secondary">Register No:</span></div>
+              <div class="col-6 mt-2"><span class="text-color">{{currentStudent.registerNo}}</span></div>
 
-          <div class="col-6"><span class="fw-medium text-secondary">Email:</span></div>
-          <div class="col-6"><span class="text-dark">{{currentStudent.email}}</span></div>
+              <div class="col-6 mt-2"><span class="fw-medium text-secondary">Email:</span></div>
+              <div class="col-6 mt-2"><span class="text-color">{{currentStudent.email}}</span></div>
 
-          <div class="col-6"><span class="fw-medium text-secondary">Department:</span></div>
-          <div class="col-6"><span class="text-dark">{{currentStudent.department}}</span></div>
+              <div class="col-6 mt-2"><span class="fw-medium text-secondary">Department:</span></div>
+              <div class="col-6 mt-2"><span class="text-color">{{currentStudent.department}}</span></div>
 
-          <div class="col-6"><span class="fw-medium text-secondary">Class:</span></div>
-          <div class="col-6"><span class="text-dark">{{getClassName(currentStudent.classId!)}}</span></div>
+              <div class="col-6 mt-2"><span class="fw-medium text-secondary">Class:</span></div>
+              <div class="col-6 mt-2"><span class="text-color">{{getClassName(currentStudent.classId!)}}</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 mt-4 mt-md-0 border-start ps-md-4">
+          @if (chartData) {
+          <div class="d-flex flex-column align-items-center">
+            <h3 class="fs-6 fw-bold mb-3 text-secondary text-center">Attendance Record</h3>
+            <div style="width: 200px; height: 200px;">
+              <p-chart type="doughnut" [data]="chartData" [options]="chartOptions"></p-chart>
+            </div>
+          </div>
+          } @else {
+          <div class="d-flex h-100 align-items-center justify-content-center text-secondary">
+            <div class="text-center p-4 bg-light rounded-3">
+              <i class="pi pi-chart-pie fs-1 mb-2 text-muted"></i>
+              <p class="m-0 text-muted">No attendance data available.</p>
+            </div>
+          </div>
+          }
         </div>
       </div>
     </p-card>
   </div>
-  <ng-template #noStudent>
-    <div class="col-12 text-center p-5">
-      <h2>Student not found</h2>
-      <p-button label="Back to Students" icon="pi pi-arrow-left" (onClick)="goBack()"></p-button>
-    </div>
-  </ng-template>
+  } @else {
+  <div class="col-12 text-center p-5">
+    <h2>Student not found</h2>
+    <p-button label="Back to Students" icon="pi pi-arrow-left" (onClick)="goBack()"></p-button>
+  </div>
+  }
 </div>

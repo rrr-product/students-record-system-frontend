@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-12 col-md-8 offset-md-2">
+    @if (mentor) {
+    <p-card header="Mentor Profile">
+      <div class="view-content">
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <div class="info-block mb-3">
+              <label class="info-label">Full Name</label>
+              <div class="info-value text-primary fw-bold fs-4">{{ mentor.name }}</div>
+            </div>
+
+            <div class="info-block mb-3">
+              <label class="info-label">Email Address</label>
+              <div class="info-value">{{ mentor.email }}</div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="info-block mb-3">
+              <label class="info-label">Existing Staff Status</label>
+              <div class="info-value">
+                <span class="badge" [ngClass]="mentor.isExistingStaff ? 'bg-success' : 'bg-secondary'">
+                  {{ mentor.isExistingStaff ? 'Yes - Staff Member' : 'No - External Mentor' }}
+                </span>
+              </div>
+            </div>
+
+            <div class="info-block">
+              <label class="info-label">Mentor Type</label>
+              <div class="info-value">
+                <span class="badge bg-info">{{ mentor.type }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4 opacity-10">
+
+        <div class="row text-secondary small">
+          <div class="col-md-6 mb-2">
+            <i class="pi pi-calendar-plus me-1"></i>
+            <strong>Created:</strong> {{ mentor.createdAt | date:'medium' }}
+          </div>
+          <div class="col-md-6 mb-2">
+            <i class="pi pi-calendar-times me-1"></i>
+            <strong>Last Updated:</strong> {{ mentor.updatedAt | date:'medium' }}
+          </div>
+          <div class="col-12 mt-2">
+            <i class="pi pi-id-card me-1"></i>
+            <strong>Internal ID:</strong> {{ mentor.id }}
+          </div>
+        </div>
+      </div>
+
+      <ng-template pTemplate="footer">
+        <div class="d-flex justify-content-between">
+          <p-button label="Back to List" severity="secondary" icon="pi pi-arrow-left"
+            routerLink="/lookup/mentors"></p-button>
+          <p-button label="Edit Mentor" icon="pi pi-pencil" severity="success"
+            [routerLink]="['/lookup/mentors/edit', mentor.id]"></p-button>
+        </div>
+      </ng-template>
+    </p-card>
+    } @else {
+    <p-card header="Not Found">
+      <div class="text-center p-5">
+        <i class="pi pi-exclamation-circle text-warning fs-1 mb-3"></i>
+        <h3>Mentor not found</h3>
+        <p>The mentor you are looking for does not exist or has been removed.</p>
+        <p-button label="Back to List" routerLink="/lookup/mentors"></p-button>
+      </div>
+    </p-card>
+    }
+  </div>
+</div>

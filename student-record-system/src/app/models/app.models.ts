@@ -1,7 +1,11 @@
 export interface LookupItem {
   id: string;
   name: string;
+  email: string;
+  isExistingStaff: boolean;
   type: 'MENTOR';
+  createdAt?: string | Date;
+  updatedAt?: string | Date;
 }
 
 export interface ClassRecord {
@@ -23,4 +27,15 @@ export interface StudentRecord {
   registerNo: string;
   department: string;
   classId: string;
+}
+
+export interface AttendanceRecord {
+  id: string;
+  classId: string;
+  date: Date | string;
+  time: Date | string;
+  records: {
+    studentId: string;
+    status: 'Present' | 'Absent' | 'Leave';
+  }[];
 }

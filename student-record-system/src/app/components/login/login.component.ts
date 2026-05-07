@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -25,7 +25,7 @@ import { MessageModule } from 'primeng/message';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   userId = '';
   password = '';
   error = '';
@@ -35,6 +35,14 @@ export class LoginComponent {
     private router: Router
   ) { }
 
+  ngOnInit() {
+    const element = document.querySelector('html');
+    if (element) {
+      element.classList.remove('p-dark');
+      element.setAttribute('data-bs-theme', 'light');
+    }
+  }
+
   login() {
     this.error = '';
     if (!this.userId || !this.password) {
@@ -42,10 +50,12 @@ export class LoginComponent {
       return;
     }
 
-    if (this.authService.login(this.userId, this.password)) {
-      this.router.navigate(['/dashboard']);
-    } else {
-      this.error = 'Invalid credentials';
-    }
+    this.authService.login(this.userId, this.password).subscribe(success => {
+      if (success) {
+        this.router.navigate(['/dashboard']);
+      } else {
+        this.error = 'Invalid credentials';
+      }
+    });
   }
 }

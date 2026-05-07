@@ -1,34 +1,22 @@
 <div class="row">
-  <div class="col-12">
-    <p-card header="Mentors Lookup">
-      <div class="d-flex gap-3 mb-4">
-        <input type="text" pInputText [(ngModel)]="newMentorName" placeholder="Mentor Name" class="w-100" style="max-width: 300px;" />
-        <p-button label="Add Mentor" icon="pi pi-plus" (onClick)="addMentor()" [disabled]="!newMentorName"></p-button>
-      </div>
-      
-      <p-table [value]="mentors" [tableStyle]="{ 'min-width': '50rem' }">
-        <ng-template pTemplate="header">
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Actions</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-mentor>
-          <tr>
-            <td>{{mentor.id}}</td>
-            <td>{{mentor.name}}</td>
-            <td>
-              <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [text]="true" (onClick)="deleteMentor(mentor.id)"></p-button>
-            </td>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="emptymessage">
-          <tr>
-            <td colspan="3" class="text-center p-4">No mentors found. Add some mentors to use in classes.</td>
-          </tr>
-        </ng-template>
-      </p-table>
+  <div class="col-12 mb-4">
+    <h2 class="m-0">Lookups</h2>
+    <p class="text-secondary">Manage system-wide lookup data and configurations.</p>
+  </div>
+  
+  <div class="col-12 col-md-4 col-lg-3">
+    <p-card header="Mentors" subheader="Manage teaching staff" styleClass="h-100 shadow-sm border-0 lookup-card cursor-pointer" [routerLink]="['/lookup/mentors']">
+      <ng-template pTemplate="header">
+        <div class="d-flex justify-content-center p-4 bg-primary-subtle rounded-top text-primary">
+          <i class="pi pi-users" style="font-size: 3rem"></i>
+        </div>
+      </ng-template>
+      <p>Configure and manage the list of mentors available for assignment to classes.</p>
+      <ng-template pTemplate="footer">
+        <p-button label="Manage Mentors" icon="pi pi-chevron-right" iconPos="right" [text]="true" routerLink="/lookup/mentors"></p-button>
+      </ng-template>
     </p-card>
   </div>
+  
+  <!-- Future lookup cards can be added here -->
 </div>

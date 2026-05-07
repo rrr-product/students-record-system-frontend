@@ -1,0 +1,66 @@
+<div class="row">
+  @if (currentClass) {
+  <div class="col-12">
+    <p-card>
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+        <h2 class="fs-4 fw-bold m-0 text-color">
+          <a class="text-decoration-none text-primary" [routerLink]="['/classes/view', currentClass.id]">Class {{
+            currentClass.section }}</a>
+          <span class="text-secondary fw-normal fs-5"> :: Take Attendance</span>
+        </h2>
+        <div class="d-flex align-items-center gap-2">
+          <p-button label="Cancel" icon="pi pi-times" size="small" severity="secondary" [text]="true"
+            (onClick)="cancel()"></p-button>
+          <p-button label="Save Attendance" icon="pi pi-check" size="small" (onClick)="saveAttendance()"
+            [disabled]="!isFormValid()"></p-button>
+        </div>
+      </div>
+
+      <div class="d-flex flex-column gap-3 mt-3 mb-4">
+        <div class="row">
+          <div class="col-12 col-md-6 mb-3">
+            <label class="d-block text-color fw-medium mb-2">Date</label>
+            <p-datepicker [(ngModel)]="attendanceDate" [showIcon]="true" styleClass="w-100"></p-datepicker>
+          </div>
+          <div class="col-12 col-md-6 mb-3">
+            <label class="d-block text-color fw-medium mb-2">Time</label>
+            <p-datepicker [(ngModel)]="attendanceTime" [timeOnly]="true" hourFormat="12"
+              styleClass="w-100"></p-datepicker>
+          </div>
+        </div>
+      </div>
+
+      <p-table [value]="classStudents" [tableStyle]="{ 'min-width': '50rem' }" styleClass="p-datatable-sm">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Reg. No</th>
+            <th>Name</th>
+            <th class="text-center">Status</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-student>
+          <tr>
+            <td>{{student.registerNo}}</td>
+            <td>{{student.name}}</td>
+            <td class="text-center">
+              <p-selectbutton [options]="statusOptions" [(ngModel)]="studentStatuses[student.id]" optionLabel="label"
+                optionValue="value" [multiple]="false" [allowEmpty]="false"></p-selectbutton>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="3" class="text-center p-4">No students found in this class.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+
+    </p-card>
+  </div>
+  } @else {
+  <div class="col-12 text-center p-5">
+    <h2>Class not found</h2>
+    <p-button label="Back to Classes" icon="pi pi-arrow-left" (onClick)="cancel()"></p-button>
+  </div>
+  }
+</div>

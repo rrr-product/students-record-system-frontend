@@ -1,0 +1,8 @@
+::ng-deep .p-selectbutton .p-button {
+  padding: 0.5rem 1rem;
+}
+::ng-deep .p-selectbutton .p-button.p-highlight {
+  background: var(--p-primary-500);
+  border-color: var(--p-primary-500);
+  color: white;
+}

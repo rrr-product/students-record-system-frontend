@@ -17,7 +17,28 @@ export const routes: Routes = [
       },
       { 
         path: 'lookup', 
-        loadComponent: () => import('./components/lookup/lookup.component').then(m => m.LookupComponent) 
+        children: [
+          {
+            path: '',
+            loadComponent: () => import('./components/lookup/lookup.component').then(m => m.LookupComponent)
+          },
+          { 
+            path: 'mentors', 
+            loadComponent: () => import('./components/mentor/mentor-list/mentor-list.component').then(m => m.MentorListComponent) 
+          },
+          { 
+            path: 'mentors/create', 
+            loadComponent: () => import('./components/mentor/mentor-form/mentor-form.component').then(m => m.MentorFormComponent) 
+          },
+          { 
+            path: 'mentors/edit/:id', 
+            loadComponent: () => import('./components/mentor/mentor-form/mentor-form.component').then(m => m.MentorFormComponent) 
+          },
+          { 
+            path: 'mentors/view/:id', 
+            loadComponent: () => import('./components/mentor/mentor-view/mentor-view.component').then(m => m.MentorViewComponent) 
+          }
+        ]
       },
       { 
         path: 'classes', 
@@ -34,6 +55,10 @@ export const routes: Routes = [
       { 
         path: 'classes/view/:id', 
         loadComponent: () => import('./components/class/class-view/class-view').then(m => m.ClassView) 
+      },
+      { 
+        path: 'classes/:id/attendance', 
+        loadComponent: () => import('./components/class/attendance/attendance.component').then(m => m.AttendanceComponent) 
       },
       { 
         path: 'students', 

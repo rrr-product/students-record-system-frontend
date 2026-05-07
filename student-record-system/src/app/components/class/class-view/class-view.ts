@@ -25,6 +25,7 @@ import { TableModule } from 'primeng/table';
 export class ClassView implements OnInit, OnDestroy {
   currentClass: ClassRecord | undefined;
   classStudents: StudentRecord[] = [];
+  totalClassesConducted: number = 0;
   private subscription: Subscription = new Subscription();
 
   constructor(
@@ -43,6 +44,12 @@ export class ClassView implements OnInit, OnDestroy {
             this.classStudents = students.filter(s => s.classId === this.currentClass?.id);
           });
           this.subscription.add(studentsSub);
+
+          const attendanceSub = this.dataService.attendance$.subscribe(attendance => {
+            const classAttendance = attendance.filter(a => a.classId === this.currentClass?.id);
+            this.totalClassesConducted = classAttendance.length;
+          });
+          this.subscription.add(attendanceSub);
         }
       }
     });
@@ -66,6 +73,12 @@ export class ClassView implements OnInit, OnDestroy {
   editClass() {
     if (this.currentClass) {
       this.router.navigate(['/classes/edit', this.currentClass.id]);
+    }
+  }
+
+  takeAttendance() {
+    if (this.currentClass) {
+      this.router.navigate(['/classes', this.currentClass.id, 'attendance']);
     }
   }
 }

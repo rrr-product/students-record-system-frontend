@@ -2,7 +2,7 @@
   <div class="col-12">
     <p-card>
       <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
-        <h2 class="fs-4 fw-bold m-0 text-dark">
+        <h2 class="fs-4 fw-bold m-0 text-color">
           <a class="text-decoration-none text-primary" routerLink="/students">Students</a>
           <span class="text-secondary fw-normal fs-5"> :: {{ isEditing ? 'Edit' : 'Create' }}</span>
         </h2>
@@ -14,29 +14,28 @@
       <div class="d-flex flex-column gap-3 mt-3">
         <div class="row">
           <div class="col-12 mb-3">
-            <label class="d-block text-dark fw-medium mb-2">Name</label>
+            <label class="d-block text-color fw-medium mb-2">Name</label>
             <input type="text" pInputText [(ngModel)]="currentStudent.name" class="w-100" />
           </div>
           <div class="col-12 col-md-6 mb-3">
-            <label class="d-block text-dark fw-medium mb-2">Register No</label>
+            <label class="d-block text-color fw-medium mb-2">Register No</label>
             <input type="text" pInputText [(ngModel)]="currentStudent.registerNo" class="w-100" />
           </div>
           <div class="col-12 col-md-6 mb-3">
-            <label class="d-block text-dark fw-medium mb-2">Email</label>
+            <label class="d-block text-color fw-medium mb-2">Email</label>
             <input type="email" pInputText [(ngModel)]="currentStudent.email" class="w-100" />
           </div>
           <div class="col-12 col-md-6 mb-3">
-            <label class="d-block text-dark fw-medium mb-2">Department</label>
+            <label class="d-block text-color fw-medium mb-2">Department</label>
             <input type="text" pInputText [(ngModel)]="currentStudent.department" class="w-100" />
           </div>
           <div class="col-12 col-md-6 mb-3">
-            <label class="d-block text-dark fw-medium mb-2">Class (Section)</label>
+            <label class="d-block text-color fw-medium mb-2">Class (Section)</label>
             <p-select [options]="classes" [(ngModel)]="currentStudent.classId" optionLabel="section" optionValue="id"
               placeholder="Select Class" styleClass="w-100"></p-select>
           </div>
         </div>
       </div>
-
     </p-card>
   </div>
 </div>
